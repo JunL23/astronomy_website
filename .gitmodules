@@ -1,0 +1,3 @@
+[submodule "src/lib/VirtualSky"]
+	path = src/lib/VirtualSky
+	url = https://github.com/JunL23/VirtualSky.git
