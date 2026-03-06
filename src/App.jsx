@@ -3,12 +3,17 @@ import { useState } from 'react'
 // import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './pages/Home/Home.jsx'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Skymap from './pages/Skymap/Skymap.jsx'
 
 function App() {
   return (
-    <>
-      <Home></Home>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path = "/" element={<Home/>} />
+        <Route path = "/Skymap" element={<Skymap/>} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

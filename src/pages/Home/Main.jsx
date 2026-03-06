@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './Home.css'
 import Log from './log';
 
 function Main_component({ username }) {

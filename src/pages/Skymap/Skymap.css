@@ -1,0 +1,15 @@
+#skymap-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+
+#skymap-container Header {
+    margin: 0;
+}
+
+#skymap-container div {
+    margin: 0;
+    flex: 1;
+}

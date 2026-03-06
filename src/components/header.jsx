@@ -1,10 +1,11 @@
+import { NavLink } from "react-router-dom";
 
 function Header() {
     return (
         <header 
             id="web-header" 
             style={{
-                backgroundColor: "black", 
+                backgroundColor: "aqua", 
                 height: "40px", 
                 width: "100%",
                 textAlign: "end"
@@ -20,9 +21,8 @@ function Header() {
                     paddingRight: "20px"
                 }}
             >
-                <a href="#" style={{color: "white"}}>Home</a>
-                <a href="#" style={{color: "white"}}>Skymap</a>
-                <a href="#" style={{color: "white"}}>Simulation</a>
+                <NavLink to="/" style={{color: "white"}}>Home</NavLink>
+                <NavLink to="/Skymap" style={{color: "white"}}>Skymap</NavLink>
             </nav>
         </header>
     )
