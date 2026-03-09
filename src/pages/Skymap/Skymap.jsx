@@ -7,11 +7,14 @@ import { useFetchLocation } from '../../custom_hook/useFetchLocation.js';
 function Skymap() {
     const { Location, Loading } = useFetchLocation();
 
+    // get the neccessary script needed for the Virtualsky skymap display
+    // re-render after loading of user location's latitude and longitude is completed
     useEffect(() => {
         const jquery_script = document.createElement('script');
         jquery_script.src = '/lib/VirtualSky/stuquery.min.js';
         jquery_script.id = 'jquery';
 
+        // ensure the user location's latitude and longitude is loaded before loading script and making the skymap
         if(!Loading && Location.latitude !== Infinity && Location.longitude !== Infinity) {
             jquery_script.onload = () => {
                 console.log("jquery script complete");
@@ -43,6 +46,9 @@ function Skymap() {
             document.body.appendChild(jquery_script);
         }
 
+        // clean up function to get rid of scripts when component unmounts
+        // without it will cause more and more script to added each time 
+        // user goes from one page to the skymap page
         return () => {
             const jquery = document.getElementById('jquery');
             if(jquery) {
@@ -57,6 +63,7 @@ function Skymap() {
     }, [Location, Loading]);
 
 
+    // display loading screen when user location is being loaded
     if(Loading) {
         return (
             <div>
