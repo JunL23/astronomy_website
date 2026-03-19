@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Header from "../../components/header";
 import './Skymap.css';
 import { useFetchLocation } from '../../custom_hook/useFetchLocation.js';
@@ -6,6 +6,28 @@ import { useFetchLocation } from '../../custom_hook/useFetchLocation.js';
 // Skymap page
 function Skymap() {
     const { Location, Loading } = useFetchLocation();
+    const [ object_name, setobject ] = useState("");
+
+    // use useRef to prevent rerender everytime user typed into search bar
+    const planetarium = useRef(null);
+
+    const setObject = (e) => {
+        console.log(object_name);
+        setobject(e.target.value);
+    }
+
+    function get_object() {
+        const full_url = "http://localhost:8000/simbad.php?id=" + object_name;
+        fetch(full_url)
+        .then(response => response.json())
+        .then((json_response) => {
+            planetarium.current.panTo(response.RA, response.DEC, 3000);
+        })
+        .catch(error => {
+            console.log(error);
+    });
+}
+
 
     // get the neccessary script needed for the Virtualsky skymap display
     // re-render after loading of user location's latitude and longitude is completed
@@ -27,7 +49,7 @@ function Skymap() {
                     console.log("virtualsky complete");
     
                     if(window.S) {
-                        window.S.virtualsky({
+                        const planetarium_load = window.S.virtualsky({
                             id: 'starmap',
                             projection: 'gnomic', 
                             latitude: Location.latitude, 
@@ -35,8 +57,11 @@ function Skymap() {
                             magnitude: 7,
                             fov: 120,
                             constellations: true,
-                            constellationlabels: true
-                        })
+                            constellationlabels: true,
+                            objects: '/lib/VirtualSky/messier.json'
+                        });
+
+                        planetarium.current = planetarium_load;
                     }
                 }
     
@@ -77,8 +102,8 @@ function Skymap() {
             <Header></Header>
 
             <div id='skymap_search'>
-                <input type="text" id='object-input' placeholder='Sky object you want to observe'></input>
-                <button id='object-submit'>Go to object</button>
+                <input type="text" id='object-input' onChange={setObject} placeholder='Sky object you want to observe'></input>
+                <button id='object-submit' onClick={() => get_object(object_name)}>Go to object</button>
             </div>
 
             <div id="starmap" style={{width:"100%", height:"100vh"}}/>
