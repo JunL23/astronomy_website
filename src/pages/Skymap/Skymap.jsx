@@ -76,7 +76,7 @@ function Skymap() {
         <div id='skymap-container'>
             <Header></Header>
 
-            <div id='search'>
+            <div id='skymap_search'>
                 <input type="text" id='object-input' placeholder='Sky object you want to observe'></input>
                 <button id='object-submit'>Go to object</button>
             </div>
