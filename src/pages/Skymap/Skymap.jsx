@@ -17,11 +17,13 @@ function Skymap() {
     }
 
     function get_object() {
-        const full_url = "http://localhost:8000/simbad.php?id=" + object_name;
+        const full_url = "http://localhost:8000/simbad.php?id=" + encodeURIComponent(object_name);
+        console.log(full_url);
         fetch(full_url)
         .then(response => response.json())
         .then((json_response) => {
-            planetarium.current.panTo(response.RA, response.DEC, 3000);
+            console.log(json_response);
+            planetarium.current.panTo(json_response.RA, json_response.DEC, 3000);
         })
         .catch(error => {
             console.log(error);
