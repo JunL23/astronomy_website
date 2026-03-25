@@ -4,16 +4,33 @@ header('Access-Control-Allow-Methods: GET, POST');
 
 // use urlencode to ensure space of the object name is not causing error
 $object = $_GET['id'] ?? "empty";
+$temp = urldecode($object);
+$temp = mb_convert_case($temp, MB_CASE_TITLE, "UTF-8");
 
 // tap query, it is similar to SQL
-$tap = "SELECT
-        RA,
-        DEC,
-        main_id AS \"Main identifier\"
-        FROM basic 
-        JOIN ident 
-        ON oidref = oid
-        WHERE id = '$object';";
+// $tap = "SELECT
+//         b.RA,
+//         b.DEC,
+//         b.main_id AS \"Main_identifier\",
+//         i2.id AS \"Common_name\"
+//         FROM basic as b
+//         JOIN ident as i1
+//         ON i1.oidref = b.oid
+//         LEFT JOIN ident i2
+//         ON i2.oidref = b.oid AND i2.id like '%' || normID('$temp') || '%'
+//         WHERE i1.id = '$object';";
+
+$tap = "SELECT TOP 1
+        b.RA,
+        b.DEC,
+        b.main_id AS \"Main_identifier\",
+        i2.id AS \"Common_name\"
+        FROM basic as b
+        JOIN ident as i1
+        ON i1.oidref = b.oid
+        LEFT JOIN ident i2
+        ON i2.oidref = b.oid AND i2.id like 'NAME %'
+        WHERE i1.id = '$object';";
 
 // array for the data fields for the POST request
 $data = [
@@ -55,12 +72,20 @@ if($response === false) {
 $json_response = json_decode($response, true);
 curl_close($session);
 
+$common = $json_response['data'][0][3];
+$common = str_replace("NAME ", "", $common);
+
+if(strlen($common) < strlen($temp)) {
+    $common = $temp;
+}
+
 // processed the data to include the data needed and associate them with the right name
 $processed_response = [
     'Success' => true,
     'RA' => $json_response['data'][0][0],
     'DEC' => $json_response['data'][0][1],
-    'Main_name' => $json_response['data'][0][2]
+    'Main_name' => str_replace("NAME ", "", $json_response['data'][0][2]),
+    'Common_name' => $common
 ];
 
 // return the array as in JSON format

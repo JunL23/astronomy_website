@@ -21,3 +21,21 @@
     top: 100px;
     z-index: 10;
 }
+
+#info-container {
+    position: absolute;
+    right: 20px;
+    top: 100px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(181, 171, 171, 0.5);
+}
+
+#info-container strong {
+    color: white;
+}
+
+#info-container h3 {
+    color: white;
+}

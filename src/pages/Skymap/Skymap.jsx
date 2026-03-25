@@ -7,6 +7,7 @@ import { useFetchLocation } from '../../custom_hook/useFetchLocation.js';
 function Skymap() {
     const { Location, Loading } = useFetchLocation();
     const [ object_name, setobject ] = useState("");
+    const [ object_data, setobjectdata] = useState(null);
 
     // use useRef to prevent rerender everytime user typed into search bar
     const planetarium = useRef(null);
@@ -23,7 +24,16 @@ function Skymap() {
         .then(response => response.json())
         .then((json_response) => {
             console.log(json_response);
+            setobjectdata(json_response);
             planetarium.current.panTo(json_response.RA, json_response.DEC, 3000);
+
+            planetarium.current.addPointer({
+                ra: json_response.RA,
+                dec: json_response.DEC,
+                label: json_response.Common_name,
+                colour: "#ffffff",
+            });
+            planetarium.current.draw();
         })
         .catch(error => {
             console.log(error);
@@ -107,6 +117,14 @@ function Skymap() {
                 <input type="text" id='object-input' onChange={setObject} placeholder='Sky object you want to observe'></input>
                 <button id='object-submit' onClick={() => get_object(object_name)}>Go to object</button>
             </div>
+
+            {/* conditional render */}
+            {object_data && <div id='info-container'>
+                <h3>{object_data.Common_name}</h3>
+                <strong>Main identifier: {object_data.Main_name}</strong>
+                <strong>RA: {object_data.RA}</strong>
+                <strong>DEC: {object_data.DEC}</strong>
+            </div>}
 
             <div id="starmap" style={{width:"100%", height:"100vh"}}/>
         </div>
