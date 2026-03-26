@@ -17,8 +17,8 @@ function Skymap() {
         setobject(e.target.value);
     }
 
-    function get_object() {
-        const full_url = "http://localhost:8000/simbad.php?id=" + encodeURIComponent(object_name);
+    function get_object(object) {
+        const full_url = "http://localhost:8000/simbad.php?id=" + encodeURIComponent(object);
         console.log(full_url);
         fetch(full_url)
         .then(response => response.json())
@@ -70,7 +70,28 @@ function Skymap() {
                             fov: 120,
                             constellations: true,
                             constellationlabels: true,
-                            objects: '/lib/VirtualSky/messier.json'
+                            objects: '/lib/VirtualSky/messier.json',
+                            callback: {
+                                'contextmenu': function(e){
+                                    console.log('contextmenu callback', e);
+                                    e.nearest = e.data.sky.nearestObject(e.x,e.y);
+                                    console.log(e.nearest.label,e.ra,e.dec);
+
+                                    if(e.ra && e.dec){
+                                        // usestate is async, so need to ensure object_name is null, so use useeffect to cause rerender
+                                        setobject(e.nearest.label);
+                                        get_object(e.nearest.label);
+                                    }
+                                },
+                                // 'click': function(e){
+                                //     e.nearest = e.data.sky.nearestObject(e.x,e.y);
+                                //     console.log(e.nearest.label,e.ra,e.dec);
+
+                                //     // usestate is async, so need to ensure object_name is null, so use useeffect to cause rerender
+                                //     setobject(e.nearest.label);
+                                //     get_object(e.nearest.label);
+                                // }
+                            }
                         });
 
                         planetarium.current = planetarium_load;
@@ -115,7 +136,7 @@ function Skymap() {
 
             <div id='skymap_search'>
                 <input type="text" id='object-input' onChange={setObject} placeholder='Sky object you want to observe'></input>
-                <button id='object-submit' onClick={() => get_object(object_name)}>Go to object</button>
+                <button id='object-submit' onClick={() => {get_object(object_name)}}>Go to object</button>
             </div>
 
             {/* conditional render */}

@@ -24,7 +24,8 @@ $tap = "SELECT TOP 1
         b.RA,
         b.DEC,
         b.main_id AS \"Main_identifier\",
-        i2.id AS \"Common_name\"
+        i2.id AS \"Common_name\",
+        i1.id AS \"Ident\"
         FROM basic as b
         JOIN ident as i1
         ON i1.oidref = b.oid
@@ -75,7 +76,7 @@ curl_close($session);
 $common = $json_response['data'][0][3];
 $common = str_replace("NAME ", "", $common);
 
-if(strlen($common) < strlen($temp)) {
+if((strlen($common) < strlen($temp) && str_contains($json_response['data'][0][4], "NAME ")) || $common == "") {
     $common = $temp;
 }
 
