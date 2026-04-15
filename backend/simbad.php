@@ -25,7 +25,8 @@ $tap = "SELECT TOP 1
         b.DEC,
         b.main_id AS \"Main_identifier\",
         i2.id AS \"Common_name\",
-        i1.id AS \"Ident\"
+        i1.id AS \"Ident\",
+        b.morph_type
         FROM basic as b
         JOIN ident as i1
         ON i1.oidref = b.oid
@@ -86,7 +87,8 @@ $processed_response = [
     'RA' => $json_response['data'][0][0],
     'DEC' => $json_response['data'][0][1],
     'Main_name' => str_replace("NAME ", "", $json_response['data'][0][2]),
-    'Common_name' => $common
+    'Common_name' => $common,
+    'type' => $json_response['data'][0][5]
 ];
 
 // return the array as in JSON format

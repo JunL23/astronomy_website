@@ -37,8 +37,8 @@ function Skymap() {
         })
         .catch(error => {
             console.log(error);
-    });
-}
+        });
+    }
 
 
     // get the neccessary script needed for the Virtualsky skymap display
