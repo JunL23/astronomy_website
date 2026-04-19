@@ -6,6 +6,12 @@
                 Both header.php and database-connection.php are inside the includes folder
   */
 
+  header('Access-Control-Allow-Origin: http://localhost:5173');
+  header('Access-Control-Allow-Methods: POST');
+  // needed due to frontend and backend living in different port
+  // this will allow cookies to be send, allowing session to persist
+  header('Access-Control-Allow-Credentials: true');
+
   require_once('database-connection.php');
 
 
@@ -19,7 +25,7 @@
 
   
   if ($logged_in) {                                       // If already logged in  
-    header('Location: profile.php');                     // Redirect to profile page 
+    // header('Location: profile.php');                     // Redirect to profile page 
     exit;                                               // Stop further code running
   }    
 
@@ -42,38 +48,8 @@
 
     if ($user) {                               // If user data returned
       login($user);                           // Call the login function to update session data                                             
-      header('Location: profile.php');       // Redirect to profile page 
+      echo "Success";
       exit;                                 // Stop further code running 
     }
+    echo "Error in sign in";
   }
-
-    
-  /* TO-DO: Include header.php
-            Hint: Include this AFTER redirects so that HTML output does not break header() functions.
-                  header.php is inside the includes folder and already connects to the database
-  */
-  require_once('includes/header.php');
-?> 
-
-<div id="content" class="login-container animate-bottom">
-    <h1>Log In</h1>
-    <hr />
-
-    <form method="POST" action="login.php" class="login-form">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-
-        <div class="form-group">
-            <input type="submit" value="Log In" class="submit-btn">
-        </div>
-    </form>
-</div>
-
-<?php include 'includes/footer.php'; ?>

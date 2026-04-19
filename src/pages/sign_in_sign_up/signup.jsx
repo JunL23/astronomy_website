@@ -15,7 +15,7 @@ function Signup() {
             const response = await fetch("http://localhost:8000/signup.php", {
                 method: "POST",
                 headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
+                   "Content-Type": "application/x-www-form-urlencoded",
                 },
                 body: new URLSearchParams({
                     username: username,
