@@ -25,3 +25,7 @@ dist-ssr
 *.env
 NASA_texture_map/
 solar_texture/
+Images/Full/*
+Images/Thumbnail/*
+!Images/Full/.gitkeep
+!Images/Thumbnail/.gitkeep

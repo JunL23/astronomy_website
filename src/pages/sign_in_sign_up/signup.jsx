@@ -36,9 +36,7 @@ function Signup() {
     };
 
     return(
-        <div className="main_sign_container">
-            <Header/>
-            
+        <div className="main_sign_container">            
             <div className="sign_in_box1">
                 <div className="sign_in_box">
                     <h2>Sign up</h2>

@@ -11,9 +11,10 @@ export function useFetchLocation() {
     useEffect(() => {
         if(navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((location) => {
-                const { latitude, longitude } = location.coords;
-                console.log("lag: " + latitude);
-                console.log("long: " + longitude);
+                // TODO: Could optimize this more
+                const latitude = Number(location.coords.latitude.toFixed(2));
+                const longitude = Number(location.coords.longitude.toFixed(2));
+                
                 setLocation({ latitude, longitude });
                 setLoading(false);
             });

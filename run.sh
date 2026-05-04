@@ -1,0 +1,3 @@
+#!/bin/bash
+
+npm run dev & (cd backend && php -S localhost:8000)

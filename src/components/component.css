@@ -1,0 +1,15 @@
+#web-header {
+    background-color: aqua;
+    height: 40px; 
+    width: 100%;
+    text-align: end;
+}
+
+#header-nav {
+    display: flex; 
+    gap: 20px; 
+    align-items: center; 
+    height: 100%; 
+    justify-content: flex-end; 
+    padding-right: 20px
+}

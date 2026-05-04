@@ -8,6 +8,7 @@ import Skymap from './pages/Skymap/Skymap.jsx'
 import Simulation from './pages/simulation/simulation.jsx'
 import Sign_in from './pages/sign_in_sign_up/signin.jsx'
 import Signup from './pages/sign_in_sign_up/signup.jsx'
+import Gallery from './pages/Gallery/gallery.jsx'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path = "/Skymap" element={<Skymap/>} />
         <Route path = "/Sim" element={<Simulation/>} />
         <Route path = "/sign_up" element={<Signup/>} />
+        <Route path = "/Gallery" element={<Gallery/>} />
       </Routes>
     </BrowserRouter>
   )

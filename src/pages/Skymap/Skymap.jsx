@@ -8,6 +8,7 @@ function Skymap() {
     const { Location, Loading } = useFetchLocation();
     const [ object_name, setobject ] = useState("");
     const [ object_data, setobjectdata] = useState(null);
+    const [ error, seterror ] = useState(false);
 
     // use useRef to prevent rerender everytime user typed into search bar
     const planetarium = useRef(null);
@@ -24,6 +25,12 @@ function Skymap() {
         .then(response => response.json())
         .then((json_response) => {
             console.log(json_response);
+            if(json_response.Success == false) {
+                seterror(true);
+                return;
+            }
+
+            seterror(false);
             setobjectdata(json_response);
             planetarium.current.panTo(json_response.RA, json_response.DEC, 3000);
 
@@ -37,6 +44,8 @@ function Skymap() {
         })
         .catch(error => {
             console.log(error);
+            seterror(true);
+            return;
         });
     }
 
@@ -139,6 +148,8 @@ function Skymap() {
                 <button id='object-submit' onClick={() => {get_object(object_name)}}>Go to object</button>
             </div>
 
+            {error && <p id='error'>Unable to find the object being searched</p>}
+
             {/* conditional render */}
             {object_data && <div id='info-container'>
                 <h3>{object_data.Common_name}</h3>
@@ -148,6 +159,8 @@ function Skymap() {
             </div>}
 
             <div id="starmap" style={{width:"100%", height:"100vh"}}/>
+            <h4 style={{position: "absolute", right: "20px", bottom: "20px", color: "white"}}>Astronomical data provided by <a href="https://simbad.u-strasbg.fr/simbad/" target="_blank" rel="noopener noreferrer">SIMBAD Astronomical Database</a></h4>            
+            <h4 style={{position: "absolute", right: "20px", bottom: "0px", color: "white"}}>Skymap application provided by <a href="https://github.com/slowe/VirtualSky" target="_blank" rel="noopener noreferrer">VirtualSky</a></h4>            
         </div>
     )
 }

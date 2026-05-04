@@ -1,29 +1,15 @@
 import { NavLink } from "react-router-dom";
+import "./component.css";
 
 function Header() {
     return (
-        <header 
-            id="web-header" 
-            style={{
-                backgroundColor: "aqua", 
-                height: "40px", 
-                width: "100%",
-                textAlign: "end"
-            }}
-        >
-            <nav 
-                style={{
-                    display: "flex", 
-                    gap: "20px", 
-                    alignItems: "center", 
-                    height: "100%", 
-                    justifyContent: "flex-end", 
-                    paddingRight: "20px"
-                }}
-            >
+        <header
+            id="web-header">
+            <nav id="header-nav">
                 <NavLink to="/Home" style={{color: "white"}}>Home</NavLink>
                 <NavLink to="/Skymap" style={{color: "white"}}>Skymap</NavLink>
                 <NavLink to="/Sim" style={{color: "white"}}>Simulation</NavLink>
+                <NavLink to="/Gallery" style={{color: "white"}}>Gallery</NavLink>
             </nav>
         </header>
     )

@@ -54,6 +54,16 @@ function Simulation() {
             {type ? <Galaxy arm={num_arm}/> : null}
 
             {type ? null : <Solar name={object_name}/>}
+
+            <h4 style={{position: "absolute", right: "20px", bottom: "0px", color: "white"}}>Solar system textures courtesy of
+                <a href="https://science.nasa.gov/3d-resources/" target="_blank" rel="noopener noreferrer">
+                    ;&nbsp;NASA;&nbsp;
+                </a>
+                and&nbsp;
+                <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener noreferrer">
+                    Solar System Scope
+                </a>
+            </h4>            
         </div>
     )
 }

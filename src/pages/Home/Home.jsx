@@ -17,8 +17,8 @@ function Home() {
                 {/* Search widget */}
                 <Main_component username={"User1"}/>
 
-                {/* news widget */}
-                <NewsContainer></NewsContainer>
+                {/* news widget, temperory comment, continue development in future*/}
+                {/* <NewsContainer></NewsContainer> */}
             </div>
             <Footer></Footer>
         </>
