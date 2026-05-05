@@ -9,6 +9,7 @@ import Simulation from './pages/simulation/simulation.jsx'
 import Sign_in from './pages/sign_in_sign_up/signin.jsx'
 import Signup from './pages/sign_in_sign_up/signup.jsx'
 import Gallery from './pages/Gallery/gallery.jsx'
+import Community from './pages/Community/Community.jsx'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path = "/Sim" element={<Simulation/>} />
         <Route path = "/sign_up" element={<Signup/>} />
         <Route path = "/Gallery" element={<Gallery/>} />
+        <Route path = "/Community" element={<Community/>} />
       </Routes>
     </BrowserRouter>
   )
