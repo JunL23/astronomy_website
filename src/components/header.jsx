@@ -10,6 +10,7 @@ function Header() {
                 <NavLink to="/Skymap" style={{color: "white"}}>Skymap</NavLink>
                 <NavLink to="/Sim" style={{color: "white"}}>Simulation</NavLink>
                 <NavLink to="/Gallery" style={{color: "white"}}>Gallery</NavLink>
+                <NavLink to="/Community" style={{color: "white"}}>Community</NavLink>
             </nav>
         </header>
     )

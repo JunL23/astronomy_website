@@ -33,53 +33,53 @@ function Gallery() {
 
     // Handle file upload
     const handleUpload = async () => {
-    if (!file) {
-        alert('Please select an image to upload.');
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('image', file);
-
-    try {
-        const response = await fetch("http://localhost:8000/image_upload.php", {
-            method: 'POST',
-            body: formData,
-            credentials: 'include',
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-            setFile(null); // Reset the file input
-            alert('Image uploaded successfully!');
-
-            // Refetch images to ensure the gallery is up-to-date
-            const fetchImages = async () => {
-                try {
-                    const response = await fetch("http://localhost:8000/get_images.php", {
-                        credentials: 'include',
-                    });
-                    const data = await response.json();
-                    if (data.success && Array.isArray(data.images)) {
-                        setImages(data.images); // Update the gallery with the latest images
-                    } else {
-                        alert('Failed to fetch images.');
-                    }
-                } catch (error) {
-                    console.error('Error fetching images:', error);
-                }
-            };
-
-            fetchImages();
-            } else {
-                alert('Failed to upload image.');
-            }
-        } catch (error) {
-            console.error('Error uploading image:', error);
-            alert('An error occurred while uploading the image.');
+        if (!file) {
+            alert('Please select an image to upload.');
+            return;
         }
-    };
+
+        const formData = new FormData();
+        formData.append('image', file);
+
+        try {
+            const response = await fetch("http://localhost:8000/image_upload.php", {
+                method: 'POST',
+                body: formData,
+                credentials: 'include',
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setFile(null); // Reset the file input
+                alert('Image uploaded successfully!');
+
+                // Refetch images to ensure the gallery is up-to-date
+                const fetchImages = async () => {
+                    try {
+                        const response = await fetch("http://localhost:8000/get_images.php", {
+                            credentials: 'include',
+                        });
+                        const data = await response.json();
+                        if (data.success && Array.isArray(data.images)) {
+                            setImages(data.images); // Update the gallery with the latest images
+                        } else {
+                            alert('Failed to fetch images.');
+                        }
+                    } catch (error) {
+                        console.error('Error fetching images:', error);
+                    }
+                };
+
+                fetchImages();
+                } else {
+                    alert('Failed to upload image.');
+                }
+            } catch (error) {
+                console.error('Error uploading image:', error);
+                alert('An error occurred while uploading the image.');
+            }
+        };
 
     return (
         <div>

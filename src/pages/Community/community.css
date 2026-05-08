@@ -1,0 +1,124 @@
+#welcome-message {
+    font-size: 40px;
+    font-family: "Inter";
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+#welcome-addition {
+    font-size: 24px;
+    font-family: "Inter";
+    margin-top: 0px;
+}
+
+#community-search-box {
+    height: 40px;
+    border-radius: 20px;
+    min-width: 300px;
+    font-size: 20px;
+}
+
+#community-search-button {
+    margin-left: 20px;
+    border-radius: 20px;
+    background-color: aqua;
+}
+
+#make-post {
+    margin-top: 30px;
+    border-radius: 20px;
+    background-color: lightgreen;
+}
+
+#community-search {
+    background-color: lightgray;
+    align-items: center;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#main-community-div {
+    margin-top: 0px;
+    height: auto;
+}
+
+.tc_container {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: lightgreen;
+    padding: 10px;
+}
+
+.tc_title {
+    font-size: 40px;
+    font-family: "Inter";
+    font-weight: bold;
+    margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tc_content {
+    font-size: 24px;
+    font-family: "Inter";
+    margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#tc_main_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    flex: 1;
+}
+
+#tc_bottom_component {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 10px;
+    padding: 20px;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 0;
+    padding-top: 20px;
+    height: 500px;
+}
+
+#main-community-div {
+    margin: 0px;
+}
+
+#thread-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: scroll;
+    max-height: 500px;
+}
+
+#user-container {
+    height: 100%;
+    margin: 0px;
+    flex: 0 0 40%;
+}
+
+#post-input {
+    height: 50px;
+    width: 400px;
+}
+
+#post-content {
+    height: 200px;
+    width: 400px;
+}

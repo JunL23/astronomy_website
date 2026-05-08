@@ -8,6 +8,10 @@ function Simulation() {
     const [ object_name, setobject ] = useState("");
     const [ input, setinput] = useState("");
     const [num_arm, setarm_num] = useState(0)
+
+    // add a new key attribute to cause update every single time
+    const [key, setkey] = useState(0);
+
     const solar = ['sun', 'earth', 'jupiter', 'mars', 'mercury', 'moon', 'neptune', 'saturn', 'uranus'];
 
     const setObject = (e) => {
@@ -18,7 +22,7 @@ function Simulation() {
    function get_object(object) {
         if(solar.includes(object.toLowerCase())) {
             settype(0);
-            console.log('hi')
+            setobject(object);
             return;
         }
         settype(1)
@@ -35,10 +39,14 @@ function Simulation() {
             else if(json_response.type.startsWith('SAc') || json_response.type.startsWith('SBc')) {
                 let num = Math.floor(Math.random() * (5 - 3 + 1)) + 3;
                 setarm_num(num);
+                console.log("SBC arm: " + num_arm);
             }
             else {
                 setarm_num(2);
             }
+
+            setkey(key + 1);
+            setobject(object);
         })
         .catch(error => {
             console.log(error);
@@ -51,13 +59,13 @@ function Simulation() {
                 <input type="text" id='object-input' onChange={setObject} placeholder='Sky object you want to observe'></input>
                 <button id='object-submit' onClick={() => {get_object(input); setobject(input);}}>Go to object</button>
             </div>
-            {type ? <Galaxy arm={num_arm}/> : null}
+            {type ? <Galaxy arm={num_arm} key={key}/> : null}
 
             {type ? null : <Solar name={object_name}/>}
 
             <h4 style={{position: "absolute", right: "20px", bottom: "0px", color: "white"}}>Solar system textures courtesy of
                 <a href="https://science.nasa.gov/3d-resources/" target="_blank" rel="noopener noreferrer">
-                    ;&nbsp;NASA;&nbsp;
+                    &nbsp;NASA&nbsp;
                 </a>
                 and&nbsp;
                 <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener noreferrer">

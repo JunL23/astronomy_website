@@ -6,7 +6,7 @@ function Footer() {
                 backgroundColor: "lightblue",
                 width: "100%",
                 minHeight: "100px",
-                marginTop: "100px",
+                marginTop: "50px",
                 display: "flex",
                 gap:"100px",
                 justifyContent: "center"
