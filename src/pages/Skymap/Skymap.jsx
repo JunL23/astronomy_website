@@ -19,7 +19,7 @@ function Skymap() {
     }
 
     function get_object(object) {
-        const full_url = "http://localhost:8000/simbad.php?id=" + encodeURIComponent(object);
+        const full_url = "https://junrongliu.rhody.dev/astronomy_website/backend/simbad.php?id=" + encodeURIComponent(object);
         console.log(full_url);
         fetch(full_url)
         .then(response => response.json())
@@ -54,7 +54,7 @@ function Skymap() {
     // re-render after loading of user location's latitude and longitude is completed
     useEffect(() => {
         const jquery_script = document.createElement('script');
-        jquery_script.src = '/lib/VirtualSky/stuquery.min.js';
+        jquery_script.src = 'lib/VirtualSky/stuquery.min.js';
         jquery_script.id = 'jquery';
 
         // ensure the user location's latitude and longitude is loaded before loading script and making the skymap
@@ -63,7 +63,7 @@ function Skymap() {
                 console.log("jquery script complete");
     
                 const virtualsky = document.createElement('script');
-                virtualsky.src = '/lib/VirtualSky/virtualsky.min.js';
+                virtualsky.src = 'lib/VirtualSky/virtualsky.min.js';
                 virtualsky.id = 'virtualsky';
     
                 virtualsky.onload = () => {
@@ -79,7 +79,7 @@ function Skymap() {
                             fov: 120,
                             constellations: true,
                             constellationlabels: true,
-                            objects: '/lib/VirtualSky/messier.json',
+                            objects: 'lib/VirtualSky/messier.json',
                             callback: {
                                 'contextmenu': function(e){
                                     console.log('contextmenu callback', e);

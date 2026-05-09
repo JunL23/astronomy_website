@@ -8,7 +8,7 @@ function Thread({form, searchpost}) {
     useEffect(() => {
         const fetchpost = async () => {
             try {
-                const response = await fetch("http://localhost:8000/get_post.php");
+                const response = await fetch("https://junrongliu.rhody.dev/astronomy_website/backend/get_post.php");
                 const data = await response.json();
                 if (data.success && Array.isArray(data.post)) {
                     setpost(data.post); // Ensure data.post is an array

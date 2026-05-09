@@ -26,7 +26,7 @@ function Simulation() {
             return;
         }
         settype(1)
-        const full_url = "http://localhost:8000/simbad.php?id=" + encodeURIComponent(object);
+        const full_url = "https://junrongliu.rhody.dev/astronomy_website/backend/simbad.php?id=" + encodeURIComponent(object);
         console.log(full_url);
         fetch(full_url)
         .then(response => response.json())
@@ -64,12 +64,15 @@ function Simulation() {
             {type ? null : <Solar name={object_name}/>}
 
             <h4 style={{position: "absolute", right: "20px", bottom: "0px", color: "white"}}>Solar system textures courtesy of
-                <a href="https://science.nasa.gov/3d-resources/" target="_blank" rel="noopener noreferrer">
-                    &nbsp;NASA&nbsp;
-                </a>
-                and&nbsp;
                 <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener noreferrer">
-                    Solar System Scope
+                    &nbsp;Solar System Scope &nbsp;
+                </a>
+                <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">
+                    (CC BY 4.0) 
+                </a>
+                &nbsp;and&nbsp;
+                <a href="https://science.nasa.gov/3d-resources/" target="_blank" rel="noopener noreferrer">
+                    NASA
                 </a>
             </h4>            
         </div>

@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /astronomy_website/
+
+RewriteRule ^index\.html$ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule . /astronomy_website/index.html [L]

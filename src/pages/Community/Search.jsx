@@ -2,7 +2,7 @@ import './community.css'
 
 function Search({input, setinput, setForm, setsearchpost}) {
     const fetchpost = async () => {
-        const response = await fetch('http://localhost:8000/find_post.php', {
+        const response = await fetch('https://junrongliu.rhody.dev/astronomy_website/backend/find_post.php', {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

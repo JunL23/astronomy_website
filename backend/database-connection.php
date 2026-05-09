@@ -1,6 +1,6 @@
 <?php                                             // Opening PHP tag
 
-$configs = parse_ini_file('.env');
+$configs = parse_ini_file('/home1/junrongliu/astronomy/.env');
 
 $type     = 'mysql';                             // Type of database
 $server   = $configs["SERVER"];                    // Server the database is on

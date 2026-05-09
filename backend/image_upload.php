@@ -1,6 +1,6 @@
 <?php
 
-    header('Access-Control-Allow-Origin: http://localhost:5173');
+    header('Access-Control-Allow-Origin: https://junrongliu.rhody.dev');
     header('Access-Control-Allow-Methods: POST');
     header('Access-Control-Allow-Credentials: true');
 
@@ -32,8 +32,8 @@
     $new_height = 200;
 
     // some constants to be used
-    $thumbnail_folder_path = '../Images/Thumbnail/';
-    $full_image_folder = '../Images/Full/';
+    $thumbnail_folder_path = '/home1/junrongliu/astronomy/gallery_images/Thumbnail/';
+    $full_image_folder = '/home1/junrongliu/astronomy/gallery_images/Full/';
     $new_thumbnail_img_name = 'img_thumb_' . $UID . '_' . time();
     $new_full_img_name = 'img_full_' . $UID . '_' . time();
     
@@ -60,8 +60,8 @@
             VALUES (:UID, :thumbnail, :type, :image);";
     
     try {
-        pdo($pdo, $sql, ['UID' => $UID, 'thumbnail' => $thumbnail_folder_path . $new_thumbnail_img_name, 
-                        'type' => $type, 'image' => $full_image_folder . $new_full_img_name]);
+        pdo($pdo, $sql, ['UID' => $UID, 'thumbnail' => $new_thumbnail_img_name, 
+                        'type' => $type, 'image' => $new_full_img_name]);
     } catch (Exception $e) {
         echo "Error happened in sign up" . $e->getMessage();
     }

@@ -13,7 +13,7 @@ function Sign_in() {
     useEffect(() => {
         const check_log = async () => {
             try {
-                const response = await fetch("http://localhost:8000/check_log_in.php", {
+                const response = await fetch("https://junrongliu.rhody.dev/astronomy_website/backend/check_log_in.php", {
                     method: "POST",
                     credentials: "include",
                     headers: {
@@ -49,7 +49,7 @@ function Sign_in() {
         e.preventDefault(); // Prevent the default form submission behavior
 
         try {
-            const response = await fetch("http://localhost:8000/login.php", {
+            const response = await fetch("https://junrongliu.rhody.dev/astronomy_website/backend/login.php", {
                 method: "POST",
                 credentials: "include",
                 headers: {

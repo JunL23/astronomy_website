@@ -9,7 +9,7 @@ function Gallery() {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const response = await fetch("http://localhost:8000/get_images.php", {
+                const response = await fetch("https://junrongliu.rhody.dev/astronomy_website/backend/get_images.php", {
                     credentials: 'include',
                 });
                 const data = await response.json();
@@ -42,7 +42,7 @@ function Gallery() {
         formData.append('image', file);
 
         try {
-            const response = await fetch("http://localhost:8000/image_upload.php", {
+            const response = await fetch("https://junrongliu.rhody.dev/astronomy_website/backend/image_upload.php", {
                 method: 'POST',
                 body: formData,
                 credentials: 'include',
@@ -57,7 +57,7 @@ function Gallery() {
                 // Refetch images to ensure the gallery is up-to-date
                 const fetchImages = async () => {
                     try {
-                        const response = await fetch("http://localhost:8000/get_images.php", {
+                        const response = await fetch("https://junrongliu.rhody.dev/astronomy_website/backend/get_images.php", {
                             credentials: 'include',
                         });
                         const data = await response.json();
@@ -100,10 +100,10 @@ function Gallery() {
                     <div
                         key={index}
                         style={{ margin: '10px', textAlign: 'center', cursor: 'pointer' }}
-                        onClick={() => window.open(image.image, '_blank')} // Open full image on click
+                        onClick={() => window.open(`https://junrongliu.rhody.dev/astronomy_website/backend/image.php?id=${image.ImageID}&type=image`, '_blank')} // Open full image on click
                     >
                         <img
-                            src={image.thumbnail}
+                            src={`https://junrongliu.rhody.dev/astronomy_website/backend/image.php?id=${image.ImageID}&type=thumbnail`}
                             alt="Thumbnail"
                             style={{ width: '150px', height: '150px', objectFit: 'cover' }}
                         />

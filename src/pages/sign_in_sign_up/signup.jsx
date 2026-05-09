@@ -12,7 +12,7 @@ function Signup() {
         e.preventDefault(); // Prevent the default form submission behavior
 
         try {
-            const response = await fetch("http://localhost:8000/signup.php", {
+            const response = await fetch("https://junrongliu.rhody.dev/astronomy_website/backend/signup.php", {
                 method: "POST",
                 headers: {
                    "Content-Type": "application/x-www-form-urlencoded",

@@ -6,7 +6,7 @@ function Form({setForm}) {
 
     const post = async (title, content) => {
         const time = Date.now();
-        const response = await fetch('http://localhost:8000/post.php', {
+        const response = await fetch('https://junrongliu.rhody.dev/astronomy_website/backend/post.php', {
             method: 'POST',
             credentials: "include",
             headers: {

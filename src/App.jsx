@@ -13,7 +13,7 @@ import Community from './pages/Community/Community.jsx'
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/astronomy_website">
       <Routes>
         <Route path = "/" element={<Sign_in/>} />
         <Route path = "/Home" element={<Home/>} />

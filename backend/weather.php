@@ -1,6 +1,6 @@
 <?php                                            
 
-header('Access-Control-Allow-Origin: http://localhost:5173');
+header('Access-Control-Allow-Origin: https://junrongliu.rhody.dev');
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 header('Content-Type: application/json');
@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit;
 }
 
-$configs = parse_ini_file('.env');
+$configs = parse_ini_file('/home1/junrongliu/astronomy/.env');
 
 // get frontend user location and timezone
 $frontend_request = file_get_contents('php://input');

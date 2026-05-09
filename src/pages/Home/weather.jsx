@@ -15,7 +15,7 @@ function Weather_container() {
             console.log("Success php api called");
             const fetchweather = async () => {
                 const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-                const response = await fetch('http://localhost:8000/weather.php', {
+                const response = await fetch('https://junrongliu.rhody.dev/astronomy_website/backend/weather.php', {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json",

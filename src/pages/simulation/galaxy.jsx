@@ -8,7 +8,7 @@ const star_amount = 100000;
 
 // Failed attempt to get stretch ratio of an image of an object
 async function get_stretch_ratio(object) {
-	const full_url = "http://localhost:8000/skyview.php?id=" + encodeURIComponent(object);
+	const full_url = "https://junrongliu.rhody.dev/astronomy_website/backend/skyview.php?id=" + encodeURIComponent(object);
 	const data = await fetch(full_url);
 	const image_blob = await data.blob();
 
